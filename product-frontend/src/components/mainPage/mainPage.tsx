@@ -63,15 +63,16 @@ const MainPage: React.FC = () => {
   return (
     <div className="container">
       <h1>Lista de Produtos</h1>
-      
-      <AddButton onProductAdded={handleProductAdded} />
-      
+      <div className='container-searchadd'>
+        
       <SearchById
         onProductFound={handleProductFound}
         onProductNotFound={handleProductNotFound}
         onError={handleError}
       />
-
+      <AddButton onProductAdded={handleProductAdded} />
+      
+      </div>
       {editingProduct ? (
         <EditProduct 
           product={editingProduct}
