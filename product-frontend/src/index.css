@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap');
 :root{
-  --acc: #e7eceb;
-  --font: #000C12;
-  --bg: #F6F6F6;
-  --title: #001D2C;
+  --acc: #D3E7CE;
+  --font: #051200;
+  --bg: #F0FAE8;
+  --title: #022c00;
   --bebas: 'Bebas Neue', sans-serif;
   --thin: 'News Cycle', sans-serif;
 
