@@ -4,7 +4,7 @@ import { SneakerMove } from "@phosphor-icons/react"
 export default function Header(){
     return(
         <>
-        <header>
+        <header className='custom-header'>
             <div className="logo-nunes"> 
             <div className="texto-principal">
             <SneakerMove size={32} weight="fill" aria-label="símbolo de tênis representando movimento"/>

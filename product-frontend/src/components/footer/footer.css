@@ -1,0 +1,27 @@
+.custom-footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: sticky;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    font-family: var(--thin);
+    color: var(--font);
+    font-size: 0.8rem;
+}
+.custom-footer strong{
+    color: var(--title);
+}
+.portfolio-link{
+    text-decoration: none;
+    margin-left: 0.2rem;
+    color: var(--font);
+}
+.portfolio-link:hover{
+    color: #50006E;
+    font-weight: bold;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    margin: 0;
+}

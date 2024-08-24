@@ -5,6 +5,7 @@ import AddButton from './add/addbutton';
 import SearchById from './search/search'
 import EditProduct from './edit/edit';
 import DeleteButton from './delete/delete';
+import './mainPage.css'
 
 const MainPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
