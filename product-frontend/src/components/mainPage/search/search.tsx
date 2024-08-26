@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchProductById } from '../../API/APIService';
 import { Product } from '../../API/types';
+import './search.css'
 
 interface SearchByIdProps {
   onProductFound: (product: Product) => void;
@@ -33,11 +34,11 @@ const SearchById: React.FC<SearchByIdProps> = ({ onProductFound, onProductNotFou
 
   return (
     <div className="mb-3">
-      <div className="form-group">
+      <div className="form-search">
         <input
           type="number"
           className="form-control"
-          placeholder="Buscar produto por ID"
+          placeholder= "Buscar produto por ID"
           value={searchId || ''}
           onChange={(e) => setSearchId(parseInt(e.target.value) || '')}
         />

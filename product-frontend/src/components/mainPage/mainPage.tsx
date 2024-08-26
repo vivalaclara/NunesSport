@@ -5,6 +5,7 @@ import AddButton from './add/addbutton';
 import SearchById from './search/search'
 import EditProduct from './edit/edit';
 import DeleteButton from './delete/delete';
+import { Pencil } from '@phosphor-icons/react';
 import './mainPage.css'
 
 const MainPage: React.FC = () => {
@@ -92,7 +93,7 @@ const MainPage: React.FC = () => {
                   className="edithandler-btn"
                   onClick={() => handleEditProduct(product)}
                 >
-                  Editar
+                  <Pencil size={20} />
                 </button>
                 <DeleteButton
                   id={product.codigo}

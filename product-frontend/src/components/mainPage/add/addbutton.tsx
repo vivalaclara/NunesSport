@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Api from '../../API/Api';
 import { Product } from '../../API/types';
+import { PlusCircle } from '@phosphor-icons/react';
 import './addbutton.css';
 
 interface AddButtonProps {
@@ -47,7 +48,8 @@ const AddButton: React.FC<AddButtonProps> = ({ onProductAdded }) => {
           <div className="add-form-overlay" onClick={() => setShowForm(false)}></div>
           <div className="add-form">
             <button className="btn-close" onClick={() => setShowForm(false)}>✖</button>
-            <h2>Adicionar Produto</h2>
+            <div className="addform-container">
+            <p className='form-title'>Adicionar Produto</p>
             <div className="form-group">
               <label>Nome</label>
               <input
@@ -57,7 +59,7 @@ const AddButton: React.FC<AddButtonProps> = ({ onProductAdded }) => {
                 onChange={(e) => setNewProduct({ ...newProduct, nome: e.target.value })}
               />
             </div>
-            <div className="form-group">
+            <div className="form-group" id="desc">
               <label>Descrição</label>
               <input
                 type="text"
@@ -81,6 +83,7 @@ const AddButton: React.FC<AddButtonProps> = ({ onProductAdded }) => {
             >
               Adicionar
             </button>
+            </div>
           </div>
         </>
       )}
@@ -89,7 +92,7 @@ const AddButton: React.FC<AddButtonProps> = ({ onProductAdded }) => {
           className="btn-showform"
           onClick={() => setShowForm(true)}
         >
-          Adicionar Produto
+          <PlusCircle size={24} />
         </button>
       )}
     </>

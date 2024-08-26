@@ -1,5 +1,8 @@
 import React from 'react';
 import { deleteProduct } from '../../API/APIService';
+import { Trash } from '@phosphor-icons/react';
+import './delete.css'
+
 interface DeleteButtonProps {
   id: number;
   onDeleteSuccess: () => void;
@@ -19,7 +22,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ id, onDeleteSuccess, onErro
 
   return (
     <button className="delete-btn" onClick={handleDelete}>
-      Deletar
+      <Trash size={20} />
     </button>
   );
 };

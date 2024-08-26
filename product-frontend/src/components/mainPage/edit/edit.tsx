@@ -64,7 +64,7 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdated, on
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-group" id="desc">
           <label htmlFor="descricao">Descrição</label>
           <input
             type="text"
