@@ -85,10 +85,11 @@ const MainPage: React.FC = () => {
           {sortedProducts.length > 0 ? (
             sortedProducts.map((product) => (
               <div key={product.codigo} className="product-card">
-                <p>id #{product.codigo}</p>
-                <p>{product.nome}</p>
-                <p>{product.descricao}</p>
-                <p>Preço: R$ {product.preco.toFixed(2)}</p>
+                <p id="product-id">ID #{product.codigo}</p>
+                <p id="product-title">{product.nome}</p>
+                <p id="product-desc">{product.descricao}</p>
+                <p id="product-price">R$ {product.preco.toFixed(2)}</p>
+                <div className='btns-div'>
                 <button 
                   className="edithandler-btn"
                   onClick={() => handleEditProduct(product)}
@@ -100,6 +101,7 @@ const MainPage: React.FC = () => {
                   onDeleteSuccess={() => handleDeleteSuccess(product.codigo)}
                   onError={handleError}
                 />
+                </div>
               </div>
             ))
           ) : (
