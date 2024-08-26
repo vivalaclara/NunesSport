@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { updateProduct } from '../../API/APIService';
 import { Product } from '../../API/types';
+import './edit.css'
+
 
 interface EditProductProps {
   product: Product;
@@ -89,8 +91,8 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdated, on
             required
           />
         </div>
-        <button type="submit" className="btn-save">Salvar</button>
-        <button type="button" className="btn-cancel" onClick={onClose}>Cancelar</button>
+        <button type="submit" className="btn-save">SALVAR</button>
+        <button type="button" className="btn-cancel" onClick={onClose}>CANCELAR</button>
       </form>
     </div>
   );

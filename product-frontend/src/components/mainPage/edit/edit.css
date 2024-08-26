@@ -1,0 +1,24 @@
+.edit-form{
+    margin-top: 2rem;
+    background-color: var(--acc);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.btn-save, .btn-cancel{
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    color: var(--font);
+    background-color: var(--acc);
+    padding: 0.5rem;
+    width: 8rem;
+    text-align: center;
+}
+.btn-save:hover, .btn-cancel:hover{
+    color: var(--bg)
+}
+.btn-save:hover{
+    background-color: var(--edt);
+}
+.btn-cancel:hover{
+    background-color: var(--neg);
+}
