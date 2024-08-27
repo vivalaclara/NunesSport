@@ -25,3 +25,14 @@
     padding: 0.25rem;
     margin: 0;
 }
+@media (max-width:767px){
+   .custom-footer{
+    font-size: 0.65rem;
+   }
+}
+@media (max-width:345px){
+    .custom-footer{
+     font-size: 0.5rem;
+    }
+ }
+ 
