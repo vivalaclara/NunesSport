@@ -5,6 +5,8 @@ import AddButton from './add/addbutton';
 import SearchById from './search/search'
 import EditProduct from './edit/edit';
 import DeleteButton from './delete/delete';
+import { Pencil } from '@phosphor-icons/react';
+import './mainPage.css'
 
 const MainPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -62,15 +64,16 @@ const MainPage: React.FC = () => {
   return (
     <div className="container">
       <h1>Lista de Produtos</h1>
-      
-      <AddButton onProductAdded={handleProductAdded} />
-      
+      <div className='container-searchadd'>
+        
       <SearchById
         onProductFound={handleProductFound}
         onProductNotFound={handleProductNotFound}
         onError={handleError}
       />
-
+      <AddButton onProductAdded={handleProductAdded} />
+      
+      </div>
       {editingProduct ? (
         <EditProduct 
           product={editingProduct}
@@ -82,21 +85,24 @@ const MainPage: React.FC = () => {
           {sortedProducts.length > 0 ? (
             sortedProducts.map((product) => (
               <div key={product.codigo} className="product-card">
-                <p>id #{product.codigo}</p>
-                <p>{product.nome}</p>
-                <p>{product.descricao}</p>
-                <p>Preço: R$ {product.preco.toFixed(2)}</p>
+                <p id="product-id">ID #{product.codigo}</p>
+                <p id="product-title">{product.nome}</p>
+                <p id="product-desc">{product.descricao}</p>
+                <p id="product-price">R$ {product.preco.toFixed(2)}</p>
+                <div className='btns-div'>
                 <button 
                   className="edithandler-btn"
                   onClick={() => handleEditProduct(product)}
+                  aria-label='abre formulário de edição de produto existente'
                 >
-                  Editar
+                  <Pencil size={20} />
                 </button>
                 <DeleteButton
                   id={product.codigo}
                   onDeleteSuccess={() => handleDeleteSuccess(product.codigo)}
                   onError={handleError}
                 />
+                </div>
               </div>
             ))
           ) : (

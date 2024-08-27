@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { updateProduct } from '../../API/APIService';
 import { Product } from '../../API/types';
+import './edit.css'
+
 
 interface EditProductProps {
   product: Product;
@@ -64,7 +66,7 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdated, on
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-group" id="desc">
           <label htmlFor="descricao">Descrição</label>
           <input
             type="text"
@@ -89,8 +91,9 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdated, on
             required
           />
         </div>
-        <button type="submit" className="btn-save">Salvar</button>
-        <button type="button" className="btn-cancel" onClick={onClose}>Cancelar</button>
+        <button type="submit" className="btn-save" aria-label='salvar edição'>SALVAR</button>
+        <button type="button" className="btn-cancel" onClick={onClose}
+           aria-label='cancelar edição, fecha o formulário de edição sem salvar'>CANCELAR</button>
       </form>
     </div>
   );
