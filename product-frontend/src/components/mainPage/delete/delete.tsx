@@ -21,7 +21,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ id, onDeleteSuccess, onErro
   };
 
   return (
-    <button className="delete-btn" onClick={handleDelete}>
+    <button className="delete-btn" onClick={handleDelete} aria-label='excluir produto'>
       <Trash size={20} />
     </button>
   );

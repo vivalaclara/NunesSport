@@ -93,6 +93,7 @@ const MainPage: React.FC = () => {
                 <button 
                   className="edithandler-btn"
                   onClick={() => handleEditProduct(product)}
+                  aria-label='abre formulário de edição de produto existente'
                 >
                   <Pencil size={20} />
                 </button>

@@ -47,7 +47,7 @@ const AddButton: React.FC<AddButtonProps> = ({ onProductAdded }) => {
         <>
           <div className="add-form-overlay" onClick={() => setShowForm(false)}></div>
           <div className="add-form">
-            <button className="btn-close" onClick={() => setShowForm(false)}>✖</button>
+            <button className="btn-close" onClick={() => setShowForm(false)} aria-label='fecha modal que adiciona novo produto'>✖</button>
             <div className="addform-container">
             <p className='form-title'>Adicionar Produto</p>
             <div className="form-group">
@@ -80,6 +80,7 @@ const AddButton: React.FC<AddButtonProps> = ({ onProductAdded }) => {
             <button
               className="add-btn"
               onClick={handleAddProduct}
+              aria-label='adiciona novo produto'
             >
               Adicionar
             </button>
@@ -91,6 +92,7 @@ const AddButton: React.FC<AddButtonProps> = ({ onProductAdded }) => {
         <button
           className="btn-showform"
           onClick={() => setShowForm(true)}
+          aria-label='abre modal que adiciona novo produto'
         >
           <PlusCircle size={24} />
         </button>

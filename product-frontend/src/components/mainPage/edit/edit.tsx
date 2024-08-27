@@ -91,8 +91,9 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdated, on
             required
           />
         </div>
-        <button type="submit" className="btn-save">SALVAR</button>
-        <button type="button" className="btn-cancel" onClick={onClose}>CANCELAR</button>
+        <button type="submit" className="btn-save" aria-label='salvar edição'>SALVAR</button>
+        <button type="button" className="btn-cancel" onClick={onClose}
+           aria-label='cancelar edição, fecha o formulário de edição sem salvar'>CANCELAR</button>
       </form>
     </div>
   );
