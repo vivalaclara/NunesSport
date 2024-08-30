@@ -1,72 +1,65 @@
 package com.nunessports.product_crud.controller;
 
 import com.nunessports.product_crud.model.ProductModel;
+import com.nunessports.product_crud.dto.ProductDTO;
+import com.nunessports.product_crud.mapper.ProductMapper;
 import com.nunessports.product_crud.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
 import java.util.List;
-import java.util.Optional;
-
+import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/products")
-@Validated
 public class ProductController {
 
-    private final ProductService productService;
+    @Autowired
+    private ProductService productService;
 
     @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
+    private ProductMapper productMapper;
+
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        List<ProductDTO> products = productService.getAllProducts().stream()
+                .map(productMapper::toDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
+        ProductModel product = productService.getById(id);
+        return ResponseEntity.ok(productMapper.toDTO(product));
+    }
+
+    @GetMapping("/codigo/{codigo}")
+    public ResponseEntity<ProductDTO> getProductByCode(@PathVariable String codigo) {
+        ProductModel product = productService.getByCodigo(codigo);
+        return ResponseEntity.ok(productMapper.toDTO(product));
     }
 
 
     @PostMapping
-    public ResponseEntity<ProductModel> createProduct(@Valid @RequestBody ProductModel product) {
-        ProductModel createdProduct = productService.createProduct(product);
-        return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
+    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) {
+        ProductModel product = productService.createProduct(productMapper.toEntity(productDTO));
+        return new ResponseEntity<>(productMapper.toDTO(product), HttpStatus.CREATED);
     }
 
-
-    @GetMapping
-    public ResponseEntity<List<ProductModel>> getAllProducts() {
-        List<ProductModel> products = productService.getAllProducts();
-        return new ResponseEntity<>(products, HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDTO> updateProduct(
+            @PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
+        ProductModel product = productService.updateProduct(id, productMapper.toEntity(productDTO));
+        return ResponseEntity.ok(productMapper.toDTO(product));
     }
 
-
-    @GetMapping("/{codigo}")
-    public ResponseEntity<ProductModel> getProductById(@PathVariable Long codigo) {
-        Optional<ProductModel> product = productService.getProductById(codigo);
-        return product.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
-
-
-    @PutMapping("/{codigo}")
-    public ResponseEntity<ProductModel> updateProduct(@PathVariable Long codigo, @Valid @RequestBody ProductModel updatedProduct) {
-        try {
-            ProductModel product = productService.updateProduct(codigo, updatedProduct);
-            return new ResponseEntity<>(product, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
-
-
-    @DeleteMapping("/{codigo}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long codigo) {
-        try {
-            productService.deleteProduct(codigo);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
     }
 }
