@@ -37,7 +37,7 @@ Antes de começar, certifique-se de que você tem as seguintes ferramentas insta
 1. **Clone o repositório:**
 
    ```sh
-   git clone https://github.com/vivalaclara/NunesSport
+   git clone https://github.com/vivalaclara/NunesSport.git
    cd NunesSport
    ```
 
@@ -66,7 +66,7 @@ Antes de começar, certifique-se de que você tem as seguintes ferramentas insta
 1. **Clone o repositório:**
 
    ```sh
-   git clone https://github.com/vivalaclara/NunesSport
+   git clone https://github.com/vivalaclara/NunesSport.git
    cd NunesSport
    ```
 
@@ -95,7 +95,7 @@ Antes de começar, certifique-se de que você tem as seguintes ferramentas insta
 1. **Clone o repositório:**
 
    ```sh
-   git clone https://github.com/vivalaclara/NunesSport
+   git clone https://github.com/vivalaclara/NunesSport.git
    cd NunesSport
    ```
 
