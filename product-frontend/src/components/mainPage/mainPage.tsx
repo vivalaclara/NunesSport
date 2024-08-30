@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { fetchProducts } from '../API/APIService';
 import { Product } from '../API/types';
 import AddButton from './add/addbutton';
-import SearchById from './search/search'
 import EditProduct from './edit/edit';
 import DeleteButton from './delete/delete';
 import { Pencil } from '@phosphor-icons/react';
 import './mainPage.css'
+import SearchByCodigo from './search/search';
 
 const MainPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -46,7 +46,7 @@ const MainPage: React.FC = () => {
   };
 
   const handleProductUpdated = (updatedProduct: Product) => {
-    setProducts(products.map(product => product.codigo === updatedProduct.codigo ? updatedProduct : product));
+    setProducts(products.map(product => product.id === updatedProduct.id ? updatedProduct : product));
     setEditingProduct(null);
   };
 
@@ -55,18 +55,18 @@ const MainPage: React.FC = () => {
   };
 
   const handleDeleteSuccess = (id: number) => {
-    setProducts(products.filter(product => product.codigo !== id));
+    setProducts(products.filter(product => product.id !== id));
   };
 
   
-  const sortedProducts = products.slice().sort((a, b) => a.codigo - b.codigo);
+  const sortedProducts = products.slice().sort((a, b) => a.id - b.id);
 
   return (
     <div className="container">
       <h1>Lista de Produtos</h1>
       <div className='container-searchadd'>
         
-      <SearchById
+      <SearchByCodigo
         onProductFound={handleProductFound}
         onProductNotFound={handleProductNotFound}
         onError={handleError}
@@ -84,8 +84,8 @@ const MainPage: React.FC = () => {
         <div className="product-list">
           {sortedProducts.length > 0 ? (
             sortedProducts.map((product) => (
-              <div key={product.codigo} className="product-card">
-                <p id="product-id">ID #{product.codigo}</p>
+              <div key={product.id} className="product-card">
+                <p id="product-id"> #{product.codigo}</p>
                 <p id="product-title">{product.nome}</p>
                 <p id="product-desc">{product.descricao}</p>
                 <p id="product-price">R$ {product.preco.toFixed(2)}</p>
@@ -98,8 +98,8 @@ const MainPage: React.FC = () => {
                   <Pencil size={20} />
                 </button>
                 <DeleteButton
-                  id={product.codigo}
-                  onDeleteSuccess={() => handleDeleteSuccess(product.codigo)}
+                  id={product.id}
+                  onDeleteSuccess={() => handleDeleteSuccess(product.id)}
                   onError={handleError}
                 />
                 </div>

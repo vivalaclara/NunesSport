@@ -11,13 +11,16 @@ export const fetchProducts = async () => {
   }
 };
 
-export const fetchProductById = async (id: number) => {
+export const fetchProductByCodigo = async (codigo: string): Promise<Product | null> => {
   try {
-    const response = await Api.get(`/products/${id}`); 
-    return response.data;
+    const response = await Api.get<Product>(`/products/codigo/${codigo}`);
+    
+  
+      return response.data;
+   
   } catch (error) {
-    console.error(`Erro ao buscar produto com ID ${id}:`, error);
-    throw error;
+    console.error(`Erro ao buscar produto com código ${codigo}:`, error);
+    return null;
   }
 };
 

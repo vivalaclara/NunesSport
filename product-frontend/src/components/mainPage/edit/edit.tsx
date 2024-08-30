@@ -3,7 +3,6 @@ import { updateProduct } from '../../API/APIService';
 import { Product } from '../../API/types';
 import './edit.css'
 
-
 interface EditProductProps {
   product: Product;
   onProductUpdated: (updatedProduct: Product) => void;
@@ -22,15 +21,18 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdated, on
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: name === 'preco' ? parseFloat(value) : value,
+      [name]: name === 'preco' ? parseFloat(value) : name === 'codigo' ? value.toUpperCase() : value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
-    
-    // Validação
+
+    if (!formData.codigo) {
+      alert('O código do produto não pode ser vazio.');
+      return;
+    }
     if (!formData.nome || formData.nome.length > 255) {
       alert('O nome do produto deve ser preenchido e ter no máximo 255 caracteres.');
       return;
@@ -39,9 +41,9 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdated, on
       alert('O preço do produto deve ser maior que zero.');
       return;
     }
-    
+
     try {
-      const updatedProduct = await updateProduct(formData.codigo, formData);
+      const updatedProduct = await updateProduct(formData.id, formData);
       onProductUpdated(updatedProduct);
     } catch (error) {
       console.error('Erro ao atualizar produto:', error);
@@ -54,6 +56,18 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdated, on
       <h2>Editar Produto</h2>
       {errorMessage && <div className="alert-error">{errorMessage}</div>}
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="codigo">Código</label>
+          <input
+            type="text"
+            id="codigo"
+            name="codigo"
+            className="form-control"
+            value={formData.codigo}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="nome">Nome</label>
           <input
@@ -91,9 +105,8 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdated, on
             required
           />
         </div>
-        <button type="submit" className="btn-save" aria-label='salvar edição'>SALVAR</button>
-        <button type="button" className="btn-cancel" onClick={onClose}
-           aria-label='cancelar edição, fecha o formulário de edição sem salvar'>CANCELAR</button>
+        <button type="submit" className="btn-save" aria-label="salvar edição">SALVAR</button>
+        <button type="button" className="btn-cancel" onClick={onClose} aria-label="cancelar edição, fecha o formulário de edição sem salvar">CANCELAR</button>
       </form>
     </div>
   );
