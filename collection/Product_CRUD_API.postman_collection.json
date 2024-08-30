@@ -1,0 +1,170 @@
+{
+    "info": {
+      "name": "Product CRUD API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Get All Products",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:8080/products",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "products"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Get Product by ID",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:8080/products/:id",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "products",
+              ":id"
+            ],
+            "variable": [
+              {
+                "key": "id",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Get Product by Code",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:8080/products/codigo/:codigo",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "products",
+              "codigo",
+              ":codigo"
+            ],
+            "variable": [
+              {
+                "key": "codigo",
+                "value": "123ABC"
+              }
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Create Product",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"nome\": \"Novo Produto\",\n  \"codigo\": \"NEWCODE\",\n  \"descricao\": \"Descrição do novo produto\",\n  \"preco\": 99.99\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8080/products",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "products"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Update Product",
+        "request": {
+          "method": "PUT",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"nome\": \"Produto Atualizado\",\n  \"codigo\": \"UPDATECODE\",\n  \"descricao\": \"Descrição atualizada\",\n  \"preco\": 149.99\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8080/products/:id",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "products",
+              ":id"
+            ],
+            "variable": [
+              {
+                "key": "id",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Delete Product",
+        "request": {
+          "method": "DELETE",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:8080/products/:id",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "products",
+              ":id"
+            ],
+            "variable": [
+              {
+                "key": "id",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        "response": []
+      }
+    ]
+  }
+  
